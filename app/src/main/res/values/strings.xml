@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProjectBook</string>
+    <string name="button">OK</string>
 </resources>
