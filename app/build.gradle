@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    mavenCentral()
+    maven { url 'http://repo1.maven.org/maven2' }
 }
 
 android {
     repositories {
-        mavenCentral()
+        maven { url 'http://repo1.maven.org/maven2' }
     }
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
