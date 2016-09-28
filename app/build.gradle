@@ -24,6 +24,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -33,10 +37,4 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    androidTestCompile 'info.cukes:cucumber-java:1.2.5'
-    compile 'info.cukes:cucumber-jvm:1.2.5'
-    compile 'info.cukes:cucumber-android:1.2.5'
-    compile 'info.cukes:cucumber-core:1.2.5'
-    compile 'info.cukes:cucumber-jvm-deps:1.0.5'
-    compile 'info.cukes:gherkin:2.12.2'
 }
