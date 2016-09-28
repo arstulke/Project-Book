@@ -11,7 +11,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "projectbook.arstulke.projectbook"
+        applicationId "arstulke.projectbook"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -27,10 +27,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
+    androidTestCompile 'info.cukes:cucumber-java:1.2.5'
+    compile 'info.cukes:cucumber-jvm:1.2.5'
+    compile 'info.cukes:cucumber-android:1.2.5'
+    compile 'info.cukes:cucumber-core:1.2.5'
+    compile 'info.cukes:cucumber-jvm-deps:1.0.5'
+    compile 'info.cukes:gherkin:2.12.2'
 }
