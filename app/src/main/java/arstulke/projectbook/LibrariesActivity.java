@@ -1,96 +1,121 @@
 package arstulke.projectbook;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EdgeEffect;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.LinkedList;
 
-@SuppressWarnings("deprecation")
-public class LibrariesActivity extends AppCompatActivity {
-
-    ListView listView;
+public class LibrariesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_libraries);
-        setTitle(getString(R.string.app_name) + ": Bibliotheken der BTC AG");
-        setColors();
 
-        String[] values = new String[]{"E5", "APW", "Hamburg", "Berlin"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        listView = (ListView) findViewById(R.id.librariesView);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openBookList(position);
-            }
-        });
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return showLibraryOptions(position);
-            }
-        });
-    }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-    private void setColors() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusBar));
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.navigationBar));
-            ActionBar actionBar = this.getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.actionBar)));
-            }
-
-            
+            toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.actionBar));
         }
     }
 
-    public void openBookList(int position) {
-        String library = (String) listView.getItemAtPosition(position);
-        Intent intent = new Intent(LibrariesActivity.this, BooksActivity.class);
-        intent.putExtra("library", library);
-        LibrariesActivity.this.startActivity(intent);
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
-    public boolean showLibraryOptions(int position) {
-        final String library = (String) listView.getItemAtPosition(position);
-        final String[] values = new String[]{"Bearbeiten", "Löschen"};
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
-
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Optionen: " + library);
-        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                System.out.println(adapter.getItem(which));
-            }
-        });
-
-        AlertDialog ad = builder.create();
-        ad.show();
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.libraries, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        String library;
+        String[] arr = new String[]{"E5", "E8","APW"};
+        LinkedList<String> a = new LinkedList<>();
+        Collections.addAll(a, arr);
+        if(!a.contains(item.getTitle())){
+            library = null;
+        } else {
+            library = (String) item.getTitle();
+        }
+
+        RelativeLayout content = (RelativeLayout) findViewById(R.id.content_libraries);
+        content.addView(loadLibrary(library));
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private View loadLibrary(String selectedLibrary) {
+        String[] books = new String[]{"Buch1", "Buch2", "Buch3", "Buch4"};
+
+        View view = null;
+        if (selectedLibrary == null) {
+            //view = findViewById(R.id.startScreen);
+        } else {
+            ListView listView = new ListView(this);//findViewById(R.id.emptyLibrary);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, books);
+            listView.setAdapter(adapter);
+
+            view = listView;
+        }
+
+        return view;
     }
 }

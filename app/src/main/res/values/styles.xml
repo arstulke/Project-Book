@@ -1,14 +1,27 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#9c9898</item>
+        <item name="colorPrimaryDark">@color/scrollColor</item>
+        <item name="colorAccent">@color/scrollColor</item>
+        <!--item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item-->
     </style>
 
     <color name="navigationBar">#000000</color>
-    <color name="statusBar">#ffa200</color>
-    <color name="actionBar">#ffd400</color>
-    <color name="edgeColor">#a9767373</color>
+    <color name="statusBar">#FFC300</color>
+    <color name="actionBar">#FFD000</color>
+    <color name="scrollColor">#a9767373</color>
+    <color name="btn_Add">#26d31d</color>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
