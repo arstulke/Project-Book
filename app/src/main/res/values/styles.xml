@@ -7,13 +7,15 @@
         <!--item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item-->
+        <item name="android:textColorSecondary">@color/startScreenTextColor</item>
     </style>
 
     <color name="navigationBar">#000000</color>
-    <color name="statusBar">#FFC300</color>
-    <color name="actionBar">#FFD000</color>
+    <color name="statusBar">#003f81</color>
+    <color name="actionBar">#004894</color>
     <color name="scrollColor">#a9767373</color>
-    <color name="btn_Add">#26d31d</color>
+    <color name="startScreenTextColor">#8c8c8c</color>
+    <color name="dividerColor">#c9c9c9</color>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

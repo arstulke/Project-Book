@@ -19,7 +19,7 @@ public class BookActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String book = intent.getStringExtra("book");
-        setTitle(getString(R.string.app_name) + ": Buch(" + book + ")");
+        setTitle(((MyApplication) getApplicationContext()).lib + ": " + book);
     }
 
     private void setColors() {

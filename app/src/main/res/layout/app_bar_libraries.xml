@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="arstulke.projectbook.LibrariesActivity">
+    tools:context=".LibrariesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,9 +23,51 @@
 
     <RelativeLayout
         android:id="@+id/cLibraries"
-        layout="@layout/content_libraries"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="56dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="zur Bedinung dieser App."
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/btnTutorial"
+            android:textColor="@color/startScreenTextColor"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:text="Herzlich Willkommen!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="122dp"
+            android:id="@+id/textView"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Hier finden Sie ein kleines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:id="@+id/textView2"
+            android:textSize="14sp"
+            android:textColor="@color/startScreenTextColor"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
+
+        <TextView android:id="@+id/btnTutorial"
+            android:text="@string/tutorial_link"
+            android:onClick="openTutorial"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="7dp"
+            android:textColor="@color/startScreenTextColor"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:textStyle="normal|bold" />
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
