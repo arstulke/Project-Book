@@ -105,11 +105,11 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
     private View loadLibrary(String selectedLibrary) {
         String[] books = new String[]{"Buch1", "Buch2", "Buch3", "Buch4"};
 
-        View view = null;
+        View view;
         if (selectedLibrary == null) {
-            //view = findViewById(R.id.startScreen);
+            view = findViewById(R.id.startScreen);
         } else {
-            ListView listView = new ListView(this);//findViewById(R.id.emptyLibrary);
+            ListView listView = (ListView) findViewById(R.id.emptyLibrary);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, books);
             listView.setAdapter(adapter);
 
