@@ -21,7 +21,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_libraries"
-        android:id="@+id/cLibraries" />
+    <RelativeLayout
+        android:id="@+id/cLibraries"
+        layout="@layout/content_libraries"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp" />
 
 </android.support.design.widget.CoordinatorLayout>

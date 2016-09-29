@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".BooksActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LibrariesActivity" />
-        </activity>
         <activity android:name=".BookActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

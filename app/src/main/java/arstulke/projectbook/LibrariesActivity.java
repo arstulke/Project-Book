@@ -11,18 +11,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
 public class LibrariesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private String[] libs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,14 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Menu m = navigationView.getMenu();
+        m.clear();
+        libs = new String[]{"E5", "APW"};
+        for (String lib : libs) {
+            m.add(lib);
+        }
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
@@ -81,41 +90,38 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    @SuppressWarnings({"StatementWithEmptyBody", "SuspiciousMethodCalls"})
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         String library;
-        String[] arr = new String[]{"E5", "E8","APW"};
         LinkedList<String> a = new LinkedList<>();
-        Collections.addAll(a, arr);
-        if(!a.contains(item.getTitle())){
-            library = null;
-        } else {
+        Collections.addAll(a, libs);
+        if (a.contains(item.getTitle())) {
             library = (String) item.getTitle();
+        } else {
+            library = null;
         }
 
-        RelativeLayout content = (RelativeLayout) findViewById(R.id.content_libraries);
-        content.addView(loadLibrary(library));
+        RelativeLayout content = (RelativeLayout) findViewById(R.id.cLibraries);
+        content.removeAllViews();
+        loadLibrary(content, library);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private View loadLibrary(String selectedLibrary) {
-        String[] books = new String[]{"Buch1", "Buch2", "Buch3", "Buch4"};
-
-        View view;
+    private void loadLibrary(RelativeLayout content, String selectedLibrary) {
         if (selectedLibrary == null) {
-            view = findViewById(R.id.startScreen);
+            content.addView(findViewById(R.id.startScreen));
         } else {
-            ListView listView = (ListView) findViewById(R.id.emptyLibrary);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, books);
+            ArrayList<String> arrayList = new ArrayList<>();
+            Collections.addAll(arrayList, "Buch1", "Buch2", "Buch3", "Buch4");
+            ListView listView = new ListView(getApplicationContext());
+            ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, arrayList);
             listView.setAdapter(adapter);
 
-            view = listView;
+            content.addView(listView);
         }
-
-        return view;
     }
 }
