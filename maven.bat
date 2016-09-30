@@ -1,0 +1,3 @@
+mvn test
+
+pause
