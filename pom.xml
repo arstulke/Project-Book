@@ -105,5 +105,18 @@
 		<artifactId>runner</artifactId>
 		<version>0.5</version>
 	</dependency>
+	<dependency>
+		<groupId>com.android.tools.build</groupId>
+		<artifactId>gradle</artifactId>
+		<version>2.2.0</version>
+	</dependency>
   </dependencies>
+  <!--
+  Error:Gradle: A problem occurred configuring root project 'Project-Book'.
+> Could not resolve all dependencies for configuration ':classpath'.
+   > Could not resolve com.android.tools.build:gradle:2.2.0.
+     Required by:
+         :Project-Book:unspecified
+      > No cached version of com.android.tools.build:gradle:2.2.0 available for offline mode.
+  -->
 </project>
