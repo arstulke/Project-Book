@@ -100,5 +100,10 @@
 		<artifactId>javax.inject</artifactId>
 		<version>1</version>
 	</dependency>
+	<dependency>
+		<groupId>com.android.support.test</groupId>
+		<artifactId>runner</artifactId>
+		<version>0.5</version>
+	</dependency>
   </dependencies>
 </project>
