@@ -13,16 +13,10 @@ import android.widget.RelativeLayout;
 
 import java.util.List;
 
-/**
- * Created by ARSTULKE on 29.09.2016.
- */
-
 public class LibraryView {
-
     private Context applicationContext;
     private Resources resources;
     private Activity activity;
-    private RelativeLayout parent;
 
     public LibraryView(Context applicationContext, Resources resources, Activity activity) {
         this.applicationContext = applicationContext;
@@ -30,23 +24,11 @@ public class LibraryView {
         this.activity = activity;
     }
 
-    private Context getApplicationContext(){
-        return applicationContext;
-    }
-
-    private Activity getActivity() {
-        return activity;
-    }
-
-    private Resources getResources() {
-        return resources;
-    }
-
     public void show(List<String> bookList, RelativeLayout parent){
-        ListView listView = new ListView(getApplicationContext());
-        ArrayAdapter adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, bookList);
+        ListView listView = new ListView(applicationContext);
+        ArrayAdapter adapter = new ArrayAdapter<>(applicationContext, android.R.layout.simple_list_item_1, android.R.id.text1, bookList);
         listView.setAdapter(adapter);
-        listView.setDivider(new ColorDrawable(getResources().getColor(R.color.dividerColor)));
+        listView.setDivider(new ColorDrawable(resources.getColor(R.color.dividerColor)));
         listView.setDividerHeight(2);
         listView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
@@ -64,10 +46,6 @@ public class LibraryView {
         });
 
         parent.addView(listView);
-        this.parent = parent;
     }
 
-    public RelativeLayout getParent(){
-        return parent;
-    }
 }
