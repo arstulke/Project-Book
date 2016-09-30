@@ -3,6 +3,11 @@ package arstulke.projectbook;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -26,7 +31,7 @@ import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({LibraryView.class})
+@PrepareForTest({LibraryView.class, LibrariesActivity.class})
 public class RenderTester {
 
     private LibraryView libraryView;
@@ -34,6 +39,8 @@ public class RenderTester {
     private RelativeLayout parent;
     private ListView listView;
     private ArrayAdapter adapter;
+
+    private Activity defaultActivity;
 
     @Before
     public void setup() throws Exception {
@@ -45,6 +52,15 @@ public class RenderTester {
         adapter = mock(ArrayAdapter.class);
         whenNew(ListView.class).withAnyArguments().thenReturn(listView);
         whenNew(ArrayAdapter.class).withAnyArguments().thenReturn(adapter);
+
+        defaultActivity = mock(LibrariesActivity.class);
+
+        listView = mock(ListView.class);
+
+        whenNew(Toolbar.class);
+        whenNew(DrawerLayout.class);
+        whenNew(NavigationView.class);
+        //when();
     }
 
     @Test
@@ -61,5 +77,9 @@ public class RenderTester {
         verify(listView).setAdapter(adapterCaptor.capture());
         verifyNew(ArrayAdapter.class).withArguments(any(Context.class), anyInt(), anyInt(), eq(bookList));
         verify(parent).addView(listView);
+    }
+
+    public void openDefaultLayout(){
+
     }
 }

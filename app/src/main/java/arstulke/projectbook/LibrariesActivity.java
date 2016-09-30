@@ -1,28 +1,17 @@
 package arstulke.projectbook;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -34,7 +23,6 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
 
     private String[] options = new String[]{"Einstellungen", "Tutorial"};
     private String[] libs;
-    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +56,9 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
             subMenu.add(option);
         }
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.statusBar));
-            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.navigationBar));
-            toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.actionBar));
-        }
+        ColorManager colorManager = new ColorManager(getResources());
+        colorManager.setColors(getWindow());
+        colorManager.setToolbarColor(toolbar);
     }
 
     @Override
@@ -138,11 +120,6 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-    private void openSettings() {
-        ///Settings
-        System.out.println("Open Settings");
-    }
-
     private void loadLibrary() {
         final String selectedLibrary = ((MyApplication) getApplication()).lib;
         if (selectedLibrary != null) {
@@ -158,23 +135,9 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
         }
     }
 
-    private boolean showOptionsDialog(int position) {
-        ArrayList<String> values = new ArrayList<>();
-        Collections.addAll(values, "Bearbeiten", "Löschen");
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Optionen: " + listView.getItemAtPosition(position));
-        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                System.out.println(adapter.getItem(which));
-            }
-        });
-
-        AlertDialog ad = builder.create();
-        ad.show();
-        return true;
+    private void openSettings() {
+        ///Settings
+        System.out.println("Open Settings");
     }
 
     public void openTutorial(View view) {

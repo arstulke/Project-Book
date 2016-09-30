@@ -19,3 +19,5 @@ gradle/
 build/
 
 gradle.properties
+
+!Gradle_MavenConverter.jar

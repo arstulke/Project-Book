@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    mavenLocal()// { url 'http://repo1.maven.org/maven2' }
+    mavenLocal()
 }
 
 android {
     repositories {
-        mavenLocal()// { url 'http://repo1.maven.org/maven2' }
+        mavenLocal()
     }
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -34,7 +34,6 @@ android {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    //androidTestCompile 'com.android.support.test:runner:0.4'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
