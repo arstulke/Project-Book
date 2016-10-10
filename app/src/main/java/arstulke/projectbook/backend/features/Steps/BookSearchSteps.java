@@ -1,15 +1,17 @@
-package Steps;
+package arstulke.projectbook.backend.features.Steps;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.de.*;
-import implementation.objects.Book;
-import implementation.search.BookNotFoundException;
-import implementation.search.SearchBook;
 import org.junit.Assert;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
+import arstulke.projectbook.backend.implementation.objects.Book;
+import arstulke.projectbook.backend.implementation.search.BookNotFoundException;
+import arstulke.projectbook.backend.implementation.search.SearchBook;
+import cucumber.api.DataTable;
+import cucumber.api.java.de.Dann;
+import cucumber.api.java.de.Wenn;
 
 import static org.junit.Assert.assertEquals;
 

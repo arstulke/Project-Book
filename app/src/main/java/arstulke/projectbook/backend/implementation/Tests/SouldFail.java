@@ -7,11 +7,11 @@ import org.junit.Assert;
 
 import java.util.IllegalFormatCodePointException;
 @RequiresApi(api = Build.VERSION_CODES.N)
-interface ShouldFail {
+abstract class ShouldFail {
 
-    void failCode();
+    public abstract void failCode();
 
-    default void test(String failMessage, Exception exceptionType) {
+    public void test(String failMessage, Exception exceptionType) {
         try {
             failCode();
             Assert.fail(failMessage);
@@ -28,11 +28,11 @@ interface ShouldFail {
         }
     }
 
-    default void test(Exception e) {
+    public void test(Exception e) {
         test("should fail", e);
     }
 
-    default void test() {
+    public void test() {
         test(null);
     }
 }

@@ -32,13 +32,17 @@ public class OnlineSearchTest{
     @Test
     public void substringByStringFromString() {
         //given
-        String newString = "susi sagt saure soße";
+        final String newString = "susi sagt saure soße";
 
         //when
-        OnlineSearch os = new OnlineSearch();
+        final OnlineSearch os = new OnlineSearch();
         String finalString = os.substring(newString,"susi sagt "," soße");
-        ((ShouldFail) () -> os.substring(newString,"susi sagte einmal "," soße")).test(
-                        "Should be: String index out of range: -1",new StringIndexOutOfBoundsException());
+        new ShouldFail(){
+            @Override
+            public void failCode() {
+                os.substring(newString, "susi sagte einmal ", " soße");
+            }
+        }.test("Should be: String index out of range: -1",new StringIndexOutOfBoundsException());
         String finalStringExtremeMin = os.substring(newString,"","");
 
         //then
