@@ -1,12 +1,7 @@
 package arstulke.projectbook.backend.Tests;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import org.junit.Assert;
 
-import java.util.IllegalFormatCodePointException;
-@RequiresApi(api = Build.VERSION_CODES.N)
 abstract class ShouldFail {
 
     public abstract void failCode();

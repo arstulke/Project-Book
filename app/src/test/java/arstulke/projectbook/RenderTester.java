@@ -16,8 +16,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.eq;
@@ -53,10 +51,5 @@ public class RenderTester {
         verify(listView).setAdapter(adapterCaptor.capture());
         verifyNew(ArrayAdapter.class).withArguments(any(Context.class), anyInt(), anyInt(), eq(bookList));
         verify(parent).addView(listView);
-    }
-
-    @Test
-    public void test(){
-        assertThat(1, is(1));
     }
 }
