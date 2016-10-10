@@ -66,16 +66,40 @@ public class Library {
     public void sortBy(sortType sort){
         switch (sort){
             case ISBN:
-                books.sort((o1, o2) -> o1.getISBN().compareTo(o2.getISBN()));
+                //noinspection Since15
+                books.sort(new Comparator<Book>() {
+                    @Override
+                    public int compare(Book o1, Book o2) {
+                        return o1.getISBN().compareTo(o2.getISBN());
+                    }
+                });
                 break;
             case TITLE:
-                books.sort((o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
+                //noinspection Since15
+                books.sort(new Comparator<Book>() {
+                    @Override
+                    public int compare(Book o1, Book o2) {
+                        return o1.getTitle().compareTo(o2.getTitle());
+                    }
+                });
                 break;
             case AUTHOR:
-                books.sort((o1, o2) -> o1.getAuthor().compareTo(o2.getAuthor()));
+                //noinspection Since15
+                books.sort(new Comparator<Book>() {
+                    @Override
+                    public int compare(Book o1, Book o2) {
+                        return o1.getAuthor().compareTo(o2.getAuthor());
+                    }
+                });
                 break;
             case PAGE:
-                books.sort((o1, o2) -> Integer.valueOf(o1.getPages()).compareTo(o2.getPages()));
+                //noinspection Since15
+                books.sort(new Comparator<Book>() {
+                    @Override
+                    public int compare(Book o1, Book o2) {
+                        return Integer.valueOf(o1.getPages()).compareTo(o2.getPages());
+                    }
+                });
                 break;
         }
     }
