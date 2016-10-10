@@ -115,6 +115,11 @@
 		<artifactId>cucumber-android</artifactId>
 		<version>1.2.4</version>
 	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.6.3</version>
+	</dependency>
   </dependencies>
   <!--
   Error:Gradle: A problem occurred configuring root project 'Project-Book'.

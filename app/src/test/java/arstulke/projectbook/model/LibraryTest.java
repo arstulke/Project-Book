@@ -1,9 +1,6 @@
-package arstulke.projectbook.backend.Tests;
+package arstulke.projectbook.model;
 
 import org.junit.Test;
-
-import arstulke.projectbook.backend.implementation.objects.Book;
-import arstulke.projectbook.backend.implementation.objects.Library;
 
 import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.CoreMatchers.is;
@@ -16,7 +13,7 @@ public class LibraryTest {
     @Test
     public void addsElement() {
         //given
-        Book book = new Book("123", "", "", "", "");
+        Book book = new Book("123", "", "", "", "", "", "", 0);
 
         //when
         MyLibrary.addBook(book);
@@ -29,7 +26,7 @@ public class LibraryTest {
     public void getsSize() {
         //given
         int size = 0;
-        Book book = new Book("123", "", "", "", "");
+        Book book = new Book("123", "", "", "", "", "", "", 0);
 
         //when
         MyLibrary.addBook(book);
@@ -42,7 +39,7 @@ public class LibraryTest {
     public void clearsTheCollection() {
         //given
 
-        Book book = new Book("123", "", "", "", "");
+        Book book = new Book("123", "", "", "", "", "", "", 0);
         MyLibrary.addBook(book);
 
         //when
@@ -57,7 +54,7 @@ public class LibraryTest {
     @Test
     public void checksIsEmpty() {
         //given
-        Book book = new Book("123", "", "", "", "");
+        Book book = new Book("123", "", "", "", "", "", "", 0);
         MyLibrary.addBook(book);
         boolean pre = MyLibrary.isEmpty();
 
@@ -72,7 +69,7 @@ public class LibraryTest {
     @Test
     public void convertsToArray() {
         //given
-        Book book = new Book("123", "", "", "", "");
+        Book book = new Book("123", "", "", "", "", "", "", 0);
         MyLibrary.addBook(book);
         Object[] goal = new Object[1];
         goal[0] = book;
@@ -87,7 +84,7 @@ public class LibraryTest {
     @Test
     public void checksCollectionContains() {
         //given
-        Book book = new Book("123", "", "", "", "");
+        Book book = new Book("123", "", "", "", "", "", "", 0);
         MyLibrary.addBook(book);
 
         //when
@@ -100,7 +97,7 @@ public class LibraryTest {
     @Test
     public void removeElements() {
         //given
-        Book book = new Book("123", "", "", "", "");
+        Book book = new Book("123", "", "", "", "", "", "", 0);
         MyLibrary.addBook(book);
 
         //when

@@ -20,18 +20,9 @@ public class Book {
     private Bitmap cover;
     private int pages;
 
-    public Book() {
-    }
+    public Book(){}
 
-    public Book(String ISBN, String title, String author, String publisher, String releaseDate) {
-        this.ISBN = ISBN;
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.releaseDate = releaseDate;
-    }
-
-    public Book(String ISBN, String title, String author, String publisher, String releaseDate, String description, String imageUrl, Bitmap cover, int pages) {
+    public Book(String ISBN, String title, String author, String publisher, String releaseDate, String description, String imageUrl, int pages) {
         this.ISBN = ISBN;
         this.title = title;
         this.author = author;
@@ -39,8 +30,10 @@ public class Book {
         this.releaseDate = releaseDate;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.cover = cover;
         this.pages = pages;
+
+        //set Cover
+
     }
 
     @Override
@@ -55,79 +48,76 @@ public class Book {
     }
 
     @Override
+    public String toString() {
+        return "Book{" +
+                "pages=" + pages +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", description='" + description + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return ISBN.hashCode();
     }
 
-    //region GETTER SETTER
+    //region Getter
     public String getDescription() {
         return description;
     }
-
     public String getImageUrl() {
         return imageUrl;
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public void setCover(Bitmap cover) {
-        this.cover = cover;
-    }
-
     public Bitmap getCover() {
         return cover;
     }
-
     public String getISBN() {
         return ISBN;
     }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
-
     public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAuthor() {
         return author;
     }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getPublisher() {
         return publisher;
     }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
     public String getReleaseDate() {
         return releaseDate;
     }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public int getPages() {
         return pages;
     }
+    //endregion
 
+    //region SETTER
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
     public void setPages(int pages) {
         this.pages = pages;
     }

@@ -44,12 +44,5 @@ dependencies {
     testCompile 'org.powermock:powermock-module-junit4:1.6.4'
     testCompile 'org.powermock:powermock-api-mockito:1.6.4'
     testCompile 'junit:junit:4.12'
-    compile 'junit:junit:4.12'
-
-    compile 'info.cukes:gherkin:2.12.2'
-    compile 'info.cukes:cucumber-jvm-deps:1.0.5'
-    compile 'info.cukes:cucumber-java:1.2.4'
-    compile 'info.cukes:cucumber-core:RELEASE'
-    compile 'info.cukes:cucumber-junit:1.2.4'
-    compile 'info.cukes:cucumber-android:1.2.4'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
 }
