@@ -16,6 +16,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.eq;
@@ -54,31 +56,8 @@ public class RenderTester {
         verify(parent).addView(listView);
     }
 
-    /*@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Test
-    public void openDefaultLayout() throws Exception {
-        //given
-        LibrariesActivity defaultActivity = mock(LibrariesActivity.class);
-
-        Toolbar toolbar = mock(Toolbar.class);
-        DrawerLayout drawer = mock(DrawerLayout.class);
-        ActionBarDrawerToggle toggle = mock(ActionBarDrawerToggle.class);
-        when(defaultActivity.findViewById(R.id.toolbar)).thenReturn(toolbar);
-        when(defaultActivity.findViewById(R.id.drawer_layout)).thenReturn(drawer);
-        whenNew(ActionBarDrawerToggle.class).withArguments(defaultActivity, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close).thenReturn(toggle);
-
-        NavigationView navigationView = mock(NavigationView.class);
-        when(defaultActivity.findViewById(R.id.nav_view)).thenReturn(navigationView);
-
-        //when
-        defaultActivity.onCreate(null, null);
-
-        //then
-        verify(defaultActivity).setSupportActionBar(toolbar);
-
-        verify(drawer).setDrawerListener(toggle);
-        verify(toggle).syncState();
-
-        verify(navigationView).setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) any());
-    }*/
+    public void test(){
+        assertThat(1, is(1));
+    }
 }

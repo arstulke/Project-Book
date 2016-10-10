@@ -2,11 +2,13 @@ apply plugin: 'com.android.application'
 
 repositories {
     mavenLocal()
+    //mavenCentral()
 }
 
 android {
     repositories {
         mavenLocal()
+        //mavenCentral()
     }
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
