@@ -40,7 +40,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     compile 'com.android.support:design:24.2.1'
-    compile 'net.algart:algart:1.2.7'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.powermock:powermock-module-junit4:1.6.4'
     testCompile 'org.powermock:powermock-api-mockito:1.6.4'
