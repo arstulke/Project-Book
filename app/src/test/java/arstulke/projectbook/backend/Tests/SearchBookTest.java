@@ -1,4 +1,4 @@
-package arstulke.projectbook.backend.implementation.Tests;
+package arstulke.projectbook.backend.Tests;
 
 
 import android.os.Build;

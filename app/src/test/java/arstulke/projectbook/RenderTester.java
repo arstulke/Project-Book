@@ -27,9 +27,8 @@ import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({LibraryView.class, LibrariesActivity.class})
+@PrepareForTest({LibraryView.class})
 public class RenderTester {
-
     @Test
     public void showBookList() throws Exception {
         Context applicationContext = mock(Context.class);
