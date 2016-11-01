@@ -1,10 +1,11 @@
 package arstulke.projectbook.activities;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,11 +24,11 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
@@ -38,6 +39,7 @@ import arstulke.projectbook.controller.MyApplication;
 import arstulke.projectbook.model.Book;
 import arstulke.projectbook.model.Library;
 import arstulke.projectbook.model.LibraryManager;
+import arstulke.projectbook.utils.LibraryExport;
 import arstulke.projectbook.utils.MyJSONParser;
 import arstulke.projectbook.utils.StyleManager;
 import arstulke.projectbook.view.LibraryView;
@@ -125,6 +127,22 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+        } else if (title.equals("Teilen")) {
+            String filename = "export.csv";
+
+            try {
+                LibraryExport.asCSV(openFileOutput(filename, Context.MODE_MULTI_PROCESS), MyApplication.libraryManager.getLibrary(MyApplication.libName), ';');
+                File file = getFileStreamPath(filename);
+                Uri fileUri = Uri.fromFile(file);
+                System.out.println(fileUri);
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/csv");
+                intent.putExtra(Intent.EXTRA_STREAM, fileUri);
+                startActivity(Intent.createChooser(intent, "Email: "));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (item.getItemId() == android.R.id.home) {
