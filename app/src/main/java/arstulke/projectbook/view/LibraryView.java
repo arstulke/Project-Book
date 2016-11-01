@@ -38,9 +38,9 @@ public class LibraryView {
     private Context applicationContext;
     private Resources resources;
     private Application application;
-    private Activity activity;
+    private LibrariesActivity activity;
 
-    public LibraryView(Context applicationContext, Resources resources, Application application, Activity activity) {
+    public LibraryView(Context applicationContext, Resources resources, Application application, LibrariesActivity activity) {
         this.applicationContext = applicationContext;
         this.resources = resources;
         this.application = application;
@@ -106,10 +106,11 @@ public class LibraryView {
                 LibrariesActivity.saveLibraries(MyApplication.libraryManager, application);
 
                 //region refresh
-                activity.finish();
+                activity.loadLibrary();
+                /*activity.finish();
                 activity.overridePendingTransition(0, 0);
                 activity.startActivity(activity.getIntent());
-                activity.overridePendingTransition(0, 0);
+                activity.overridePendingTransition(0, 0);*/
                 //endregion
             }
         });

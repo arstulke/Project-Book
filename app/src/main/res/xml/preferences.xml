@@ -8,6 +8,12 @@
             android:singleLine="false"
             android:summary="@string/downloadWithoutWifi_summary"
             android:title="@string/downloadWithoutWifi_title" />
+        <EditTextPreference
+            android:defaultValue="http://kam-pixels.de:55555/isbn/"
+            android:key="bookServiceHost"
+            android:singleLine="false"
+            android:summary="@string/bookServiceHost_summary"
+            android:title="@string/bookServiceHost_title" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="display"

@@ -130,7 +130,11 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
                 break;
             }
             case "Teilen": {
-                new ShareDialog(getApplication(), this, this).showShareDialog();
+                if (MyApplication.libraryManager.getLibrary(MyApplication.libName).size() > 0) {
+                    new ShareDialog(this, this).showShareDialog();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Sie können keine leere Bibliothek teilen", Toast.LENGTH_LONG).show();
+                }
                 break;
             }
         }
@@ -164,14 +168,18 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (input.getText().length() >= 3) {
-                        MyApplication.libName = input.getText().toString();
-                        MyApplication.libraryManager.add(new Library(MyApplication.libName));
+                        if (!MyApplication.libraryManager.containsLibrary(input.getText().toString())) {
+                            MyApplication.libName = input.getText().toString();
+                            MyApplication.libraryManager.add(new Library(MyApplication.libName));
 
-                        saveLibraries(MyApplication.libraryManager, getApplication());
-                        loadNavigationView();
-                        loadLibrary();
+                            saveLibraries(MyApplication.libraryManager, getApplication());
+                            loadNavigationView();
+                            loadLibrary();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Es existiert bereits eine Bibliothek unter diesem Namen", Toast.LENGTH_LONG).show();
+                        }
                     } else {
-                        Toast.makeText(getApplicationContext(), "Name muss mind. 3 Zeichen enthalten", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Der Name muss mind. 3 Zeichen enthalten", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -320,7 +328,7 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
         }
     }
 
-    private void loadLibrary() {
+    public void loadLibrary() {
         final Library library = MyApplication.libraryManager.getLibrary(MyApplication.libName);
         if (library != null) {
             this.setTitle(library.getName());

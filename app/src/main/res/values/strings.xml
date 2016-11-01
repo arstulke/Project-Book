@@ -97,4 +97,6 @@
     <string name="display">Darstellung</string>
     <string name="network">Netzwerk</string>
     <string name="preferences_title">Einstellungen</string>
+    <string name="bookServiceHost_title">Buch Server</string>
+    <string name="bookServiceHost_summary">Hostadresse des Buchservers (Standard: "kam-pixels.de:55555/isbn/")</string>
 </resources>

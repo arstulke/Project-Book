@@ -3,6 +3,7 @@ package arstulke.projectbook.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.io.Serializable;
 
 import arstulke.projectbook.R;
 import arstulke.projectbook.controller.MyApplication;
@@ -39,11 +42,14 @@ public class AddBookActivity extends AppCompatActivity implements View.OnClickLi
     public void searchBookEditText(View view) {
         EditText editText = (EditText) findViewById(R.id.add_book_isbn);
         String isbn = editText.getText().toString();
-        searchBook(isbn, false);
+        if(isbn.length() == 10 || isbn.length() == 13)
+            searchBook(isbn, false);
+        else
+            Toast.makeText(this, "Die ISBN muss 10 oder 13 Zeichen lang sein und darf nur Zahlen enthalten.", Toast.LENGTH_LONG).show();
     }
 
     private void searchBook(String isbn, boolean searchWithScan) {
-        BookService bs = new BookService(Settings.showHTML(getApplication()));
+        BookService bs = new BookService(Settings.showHTML(getApplication()), Settings.bookServiceHost(getApplication()));
         bs.load(isbn);
 
         //noinspection StatementWithEmptyBody

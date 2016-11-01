@@ -1,6 +1,10 @@
 package arstulke.projectbook.services;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,20 +17,22 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+import arstulke.projectbook.controller.Settings;
+
 @SuppressWarnings("unchecked")
 public class BookService extends AsyncTask<String, Void, Void> {
 
-    public BookService(boolean showHTML) {
+    public BookService(boolean showHTML, String server) {
         if (showHTML)
             urlParams += "html";
+        this.urlPattern = server;
     }
 
     public String status = "RUNNING";
     public JSONObject jsonObject = null;
 
-    private String urlPattern = "http://kam-pixels.de:55555/isbn/";
+    private String urlPattern = "";
     private String urlParams = "";
-
 
     public void load(String isbn) {
         execute(isbn);

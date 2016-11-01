@@ -49,4 +49,9 @@ public class SettingsActivity extends PreferenceActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPref.getBoolean(preference.getKey(), (Boolean) preference.getDefaultValue());
     }
+
+    public static String getStringPreference(Settings.Preference preference, Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPref.getString(preference.getKey(), (String) preference.getDefaultValue());
+    }
 }

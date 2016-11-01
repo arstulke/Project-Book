@@ -24,18 +24,16 @@ import arstulke.projectbook.utils.LibraryExport;
 
 public class ShareDialog {
 
-    private final Application application;
     private final Context context;
     private final Activity activity;
 
-    public ShareDialog(Application application, Context context ,Activity activity) {
-        this.application = application;
+    public ShareDialog(Context context, Activity activity) {
         this.context = context;
         this.activity = activity;
     }
 
     public void showShareDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(application);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         final HashMap<String, Boolean> columns = new HashMap<>();
         final String[] keys = new String[]{"isbn", "title", "author", "releaseDate", "publisher", "description", "buyLink"};

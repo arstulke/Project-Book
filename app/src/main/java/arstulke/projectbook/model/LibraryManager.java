@@ -3,6 +3,8 @@ package arstulke.projectbook.model;
 import android.app.Application;
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -81,6 +83,14 @@ public class LibraryManager extends ArrayList<Library> {
             LibraryManager libraryManager = (LibraryManager) MyJSONParser.parseJSON(application.openFileInput(fileName), LibraryManager.class);
             this.addAll(libraryManager);
         }
+    }
+
+    public boolean containsLibrary(String s) {
+        for(Library lib : this) {
+            if(StringUtils.equalsIgnoreCase(lib.getName(), s))
+                return true;
+        }
+        return false;
     }
 
     @SuppressWarnings("WeakerAccess")

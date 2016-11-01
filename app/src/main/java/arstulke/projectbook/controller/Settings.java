@@ -30,6 +30,7 @@ public class Settings {
     public static final Preference DOWNLOAD_WITHOUT_WIFI = new Preference("downloadWithoutWifi", false);
     public static final Preference SHOW_ADVERTISEMENT_LINKS = new Preference("showAdvertisementLinks", true);
     public static final Preference SHOW_HTML = new Preference("showHTML", false);
+    public static final Preference BOOK_SERVICE_HOST = new Preference("bookServiceHost", "http://kam-pixels.de:55555/isbn/");
 
     public static boolean useEthernet(Application application) {
         ConnectivityManager connManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -44,5 +45,9 @@ public class Settings {
 
     public static boolean showHTML(Application application) {
         return SettingsActivity.getBooleanPreference(SHOW_HTML, application.getApplicationContext());
+    }
+
+    public static String bookServiceHost(Application application) {
+        return SettingsActivity.getStringPreference(BOOK_SERVICE_HOST, application.getApplicationContext());
     }
 }
