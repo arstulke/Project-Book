@@ -3,6 +3,7 @@ package arstulke.projectbook.utils;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import arstulke.projectbook.model.Book;
 
@@ -13,17 +14,20 @@ import arstulke.projectbook.model.Book;
  */
 public class LibraryExport {
 
-    public static void asCSV(FileOutputStream outputStream, ArrayList<Book> books, char separator) throws IOException {
+    public static void asCSV(FileOutputStream outputStream, ArrayList<Book> books, HashMap<String, Boolean> columns, char separator) throws IOException {
         ArrayList<String> lines = new ArrayList<>();
 
         for (Book book : books) {
-            lines.add(replaceNullValue(book.getIsbn()) + separator +
-                    replaceNullValue(book.getTitle()) + separator +
-                    replaceNullValue(book.getAuthor()) + separator +
-                    replaceNullValue(book.getReleaseDate()) + separator +
-                    replaceNullValue(book.getPublisher()) + separator +
-                    replaceNullValue(book.getDescription()) + separator +
-                    replaceNullValue(book.getBuyLink()));
+            String line = "";
+            line += columns.get("isbn") ? replaceNullValue(book.getIsbn()) + separator : "";
+            line += columns.get("title") ? replaceNullValue(book.getTitle()) + separator : "";
+            line += columns.get("author") ? replaceNullValue(book.getAuthor()) + separator : "";
+            line += columns.get("releaseDate") ? replaceNullValue(book.getReleaseDate()) + separator : "";
+            line += columns.get("publisher") ? replaceNullValue(book.getPublisher()) + separator : "";
+            line += columns.get("description") ? replaceNullValue(book.getDescription()) + separator : "";
+            line += columns.get("buyLink") ? replaceNullValue(book.getBuyLink()) : "";
+
+            lines.add(line);
         }
 
         String output = "";

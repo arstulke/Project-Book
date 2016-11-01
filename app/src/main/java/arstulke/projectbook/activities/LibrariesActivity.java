@@ -1,11 +1,9 @@
 package arstulke.projectbook.activities;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,7 +26,6 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Collections;
@@ -39,10 +36,10 @@ import arstulke.projectbook.controller.MyApplication;
 import arstulke.projectbook.model.Book;
 import arstulke.projectbook.model.Library;
 import arstulke.projectbook.model.LibraryManager;
-import arstulke.projectbook.utils.LibraryExport;
 import arstulke.projectbook.utils.MyJSONParser;
 import arstulke.projectbook.utils.StyleManager;
 import arstulke.projectbook.view.LibraryView;
+import arstulke.projectbook.view.ShareDialog;
 
 @SuppressWarnings({"deprecation", "SpellCheckingInspection"})
 public class LibrariesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,8 +66,9 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
         menu.clear();
 
         if (MyApplication.libName != null) {
-            menu.add("Buch hinzufügen");
-            menu.add("Bibliothek entfernen");
+            menu.add(0, 0, 0, "Buch hinzufügen");
+            menu.add(0, 1, 0, "Teilen");
+            menu.add(0, 0, 1, "Bibliothek entfernen");
         }
 
         return true;
@@ -102,46 +100,38 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
             AlertDialog ad = builder.create();
             ad.show();
         } else */
-        if (title.equals("Buch hinzufügen")) {
-            Intent intent = new Intent(getApplicationContext(), AddBookActivity.class);
-            startActivity(intent);
-        } else if (title.equals("Bibliothek entfernen")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Bibliothek entfernen");
-            builder.setMessage("Möchten Sie wircklich die Bibliothek \"" + MyApplication.libName + "\" unwiderruflich entfernen.");
-            builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    MyApplication.libraryManager.remove(MyApplication.libraryManager.getLibrary(MyApplication.libName));
-                    MyApplication.libName = null;
+        switch (title) {
+            case "Buch hinzufügen":
+                Intent intent = new Intent(getApplicationContext(), AddBookActivity.class);
+                startActivity(intent);
+                break;
+            case "Bibliothek entfernen": {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Bibliothek entfernen");
+                builder.setMessage("Möchten Sie wircklich die Bibliothek \"" + MyApplication.libName + "\" unwiderruflich entfernen.");
+                builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MyApplication.libraryManager.remove(MyApplication.libraryManager.getLibrary(MyApplication.libName));
+                        MyApplication.libName = null;
 
-                    saveLibraries(MyApplication.libraryManager, getApplication());
-                    show();
-                }
-            });
-            builder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-        } else if (title.equals("Teilen")) {
-            String filename = "export.csv";
-
-            try {
-                LibraryExport.asCSV(openFileOutput(filename, Context.MODE_MULTI_PROCESS), MyApplication.libraryManager.getLibrary(MyApplication.libName), ';');
-                File file = getFileStreamPath(filename);
-                Uri fileUri = Uri.fromFile(file);
-                System.out.println(fileUri);
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/csv");
-                intent.putExtra(Intent.EXTRA_STREAM, fileUri);
-                startActivity(Intent.createChooser(intent, "Email: "));
-            } catch (Exception e) {
-                e.printStackTrace();
+                        saveLibraries(MyApplication.libraryManager, getApplication());
+                        show();
+                    }
+                });
+                builder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                break;
+            }
+            case "Teilen": {
+                new ShareDialog(getApplication(), this, this).showShareDialog();
+                break;
             }
         }
 
@@ -169,8 +159,6 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
             builder.setTitle("Bibliothek hinzufügen");
             final EditText input = new EditText(this);
             input.setInputType(InputType.TYPE_CLASS_TEXT);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            input.setLayoutParams(layoutParams);
             builder.setView(input);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
