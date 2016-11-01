@@ -2,6 +2,8 @@ package arstulke.projectbook.model;
 
 import org.junit.Test;
 
+import arstulke.projectbook.model.Book;
+
 import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -16,10 +18,10 @@ public class LibraryTest {
         Book book = new Book("123", "", "", "", "", "", "", 0);
 
         //when
-        MyLibrary.addBook(book);
+        MyLibrary.add(book);
 
         //then
-        assertEquals(true, MyLibrary.containsBook(book));
+        assertEquals(true, MyLibrary.contains(book));
     }
 
     @Test
@@ -29,7 +31,7 @@ public class LibraryTest {
         Book book = new Book("123", "", "", "", "", "", "", 0);
 
         //when
-        MyLibrary.addBook(book);
+        MyLibrary.add(book);
 
         //then
         assertEquals(size + 1, MyLibrary.size());
@@ -40,7 +42,7 @@ public class LibraryTest {
         //given
 
         Book book = new Book("123", "", "", "", "", "", "", 0);
-        MyLibrary.addBook(book);
+        MyLibrary.add(book);
 
         //when
         MyLibrary.clear();
@@ -55,11 +57,11 @@ public class LibraryTest {
     public void checksIsEmpty() {
         //given
         Book book = new Book("123", "", "", "", "", "", "", 0);
-        MyLibrary.addBook(book);
+        MyLibrary.add(book);
         boolean pre = MyLibrary.isEmpty();
 
         //when
-        MyLibrary.removeBook(book);
+        MyLibrary.remove(book);
 
         //then
         assertEquals(true, MyLibrary.isEmpty());
@@ -70,7 +72,7 @@ public class LibraryTest {
     public void convertsToArray() {
         //given
         Book book = new Book("123", "", "", "", "", "", "", 0);
-        MyLibrary.addBook(book);
+        MyLibrary.add(book);
         Object[] goal = new Object[1];
         goal[0] = book;
 
@@ -85,10 +87,10 @@ public class LibraryTest {
     public void checksCollectionContains() {
         //given
         Book book = new Book("123", "", "", "", "", "", "", 0);
-        MyLibrary.addBook(book);
+        MyLibrary.add(book);
 
         //when
-        boolean b = MyLibrary.containsBook(book);
+        boolean b = MyLibrary.contains(book);
 
         //then
         assertEquals(MyLibrary.toArray()[0].equals(book), b);
@@ -98,14 +100,13 @@ public class LibraryTest {
     public void removeElements() {
         //given
         Book book = new Book("123", "", "", "", "", "", "", 0);
-        MyLibrary.addBook(book);
+        MyLibrary.add(book);
 
         //when
-        MyLibrary.removeBook(book);
+        MyLibrary.remove(book);
 
         //then
         assertThat(MyLibrary.size(), is(0));
         assertThat(MyLibrary.isEmpty(), is(true));
     }
-
 }

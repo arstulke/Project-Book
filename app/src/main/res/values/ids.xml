@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="book_main" type="id" />
+    <item name="searchbar" type="id">23456789</item>
+    <item name="book_list" type="id">3456789</item>
+</resources>

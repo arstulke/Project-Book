@@ -1,7 +1,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#9c9898</item>
+        <item name="colorPrimary">@color/actionBar</item>
         <item name="colorPrimaryDark">@color/scrollColor</item>
         <item name="colorAccent">@color/scrollColor</item>
         <!--item name="colorPrimary">@color/colorPrimary</item>

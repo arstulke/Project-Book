@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="network"
+        android:title="@string/network">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="downloadWithoutWifi"
+            android:singleLine="false"
+            android:summary="@string/downloadWithoutWifi_summary"
+            android:title="@string/downloadWithoutWifi_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="display"
+        android:title="@string/display">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="showHTML"
+            android:singleLine="false"
+            android:summary="@string/showHTML_summary"
+            android:title="@string/showHTML_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="showAdvertisementLinks"
+            android:singleLine="false"
+            android:summary="@string/advertisementLinks_summary"
+            android:title="@string/advertisementLinks_title" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".LibrariesActivity">
+    tools:context=".activities.LibrariesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
+        android:id="@+id/toolbarLayout"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -38,16 +39,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:text="Herzlich Willkommen!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="122dp"
-            android:id="@+id/textView"
-            android:textSize="25sp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
             android:text="Hier finden Sie ein kleines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,6 +59,16 @@
             android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
             android:textStyle="normal|bold" />
+
+        <TextView
+            android:text="Herzlich Willkommen!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="83dp"
+            android:id="@+id/textView"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
