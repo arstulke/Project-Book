@@ -99,4 +99,10 @@
     <string name="preferences_title">Einstellungen</string>
     <string name="bookServiceHost_title">Buch Server</string>
     <string name="bookServiceHost_summary">Hostadresse des Buchservers (Standard: "kam-pixels.de:55555/isbn/")</string>
+
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
 </resources>

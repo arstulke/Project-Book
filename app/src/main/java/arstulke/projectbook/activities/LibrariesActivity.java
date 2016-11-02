@@ -402,16 +402,11 @@ public class LibrariesActivity extends AppCompatActivity implements NavigationVi
     }
 
     private void openSettings() {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-
-        System.out.println("Open Settings");
+        startActivity(new Intent(this, SettingsActivity.class));
     }
 
     public void openTutorial(View view) {
-        MyApplication.libName = null;
-        refresh();
-        System.out.println("Open Tutorial");
+        startActivity(new Intent(this, TutorialActivity.class));
     }
 
     private void refresh() {

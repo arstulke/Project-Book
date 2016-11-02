@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="trans">#00000000</color>
     <color name="scan_button">#979797</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
